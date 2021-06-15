@@ -1,0 +1,40 @@
+{
+  "name": "backend_loltv",
+  "version": "1.0.0",
+  "description": "Backend for LoLTV",
+  "main": "dist/server.js",
+  "scripts": {
+    "start": "node dist/server.js",
+    "build": "babel src --out-dir dist",
+    "lint": "eslint ./src",
+    "dev": "nodemon --watch src --exec \"npm run lint && npm run build && npm run start\"",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "fix": "eslint ./src --fix"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "awilix": "^4.3.3",
+    "awilix-express": "^4.0.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "knex": "^0.95.4",
+    "pg": "^8.5.1",
+    "poro": "^0.5.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.13.10",
+    "@babel/core": "^7.13.13",
+    "@babel/node": "^7.13.13",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/preset-env": "^7.13.12",
+    "@babel/runtime": "^7.13.10",
+    "eslint": "^7.23.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-promise": "^4.3.1",
+    "nodemon": "^2.0.7"
+  }
+}

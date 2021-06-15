@@ -1,0 +1,1 @@
+All the gamedata from past (2014-2021 including spring splits) games are from [oracleselixir](https://oracleselixir.com/tools/downloads)
