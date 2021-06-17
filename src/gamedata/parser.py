@@ -23,8 +23,43 @@ connection = psycopg2.connect(
     password=os.environ.get("DATABASE_PASSWORD"),
     port = 5433)
 
+
+
 matches = []
 dirpath = os.path.dirname(os.path.realpath(__file__)) + "/*.csv"
+
+matchIds = []
+matchez = {}
+currentInts = 0
+# These were all tests to check for wrong data
+# for file_name in glob.glob(dirpath):
+#   file = open(file_name, encoding="cp437")
+#   listFile = file.readlines()
+#   print(f'{(len(listFile)-1)/12} - {file_name}')
+
+# with open("2018_LoL_esports_match_data_from_OraclesElixir_20210605.csv", encoding="cp437") as csv_file2:
+#   csv_reader2 = csv.reader(csv_file2, delimiter=',')
+#   count = 0
+#   for row in csv_reader2:
+#     if count == 0:
+#       count += 1
+#     elif row[0] not in matchIds:
+#       matchIds.append(row[0])
+#       matchez[row[0]] = 1
+#     else:
+#       matchIds.append(row[0])
+#       matchez[row[0]] += 1
+
+# # print(matchez)
+# wrongmatches = []
+# for k,v in matchez.items():
+#   if v != 12:
+#     wrongmatches.append(k)
+  
+# print(wrongmatches)
+
+
+
 for file_name in glob.glob(dirpath):
   gamesPerFile = 0
   with open(file_name, encoding="cp437") as csv_file:
@@ -154,6 +189,8 @@ for file_name in glob.glob(dirpath):
       current_id = row[0]
       line_count += 1
       gamesPerFile += 1
+    matches.append(match)
+    gamesExtracted += 1
     print(f'{(gamesPerFile-1)/12} matches in {csv_file.name}, {gamesExtracted} matches extracted')
 
 wrongMatchIds = []
