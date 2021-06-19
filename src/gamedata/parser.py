@@ -207,6 +207,7 @@ else:
 
 
 # Inserting into db
+print('Inserting matches into the database.')
 
 connection = psycopg2.connect(
     host= os.environ.get("DATABASE_HOST"),
@@ -231,5 +232,7 @@ for match in matches:
   except:
     connection.rollback()
     missedMatches.append(match["PK_Match_MetaData"])
+
+print('Finished inserting amtches into database.')
 
 
