@@ -1,9 +1,10 @@
-export async function getMsiGames(ctx) {
+import axios from 'axios';
+
+export async function getMsiGames() {
   try {
-    const response = ctx.$axios.get('localhost:5500/api/matches/msi')
-    console.log('here');
+    const response = await axios.get('http://localhost:5500/api/matches/msi');
     return response.data;
   } catch (err) {
-    return null;
+    throw new Error(err);
   }
 }

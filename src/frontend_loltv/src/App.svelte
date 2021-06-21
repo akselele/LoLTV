@@ -1,6 +1,7 @@
 <script>
-  import { getMsiGames } from "./services/matchService.js";
-  let promiseGames = getMsiGames(this);
+  import { getMsiGames } from "./services/matchService";
+
+  let promiseGames = getMsiGames();
   export let name;
 </script>
 
@@ -14,7 +15,7 @@
   {#await promiseGames}
     <p>...waiting</p>
   {:then games}
-    <p>{games}</p>
+    <p>{JSON.stringify(games.matches[0])}</p>
   {:catch error}
     <p style="color: red">{error.message}</p>
   {/await}
