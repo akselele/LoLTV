@@ -4,8 +4,16 @@ export default class matchService {
   }) {
     this.matchRepository = matchRepository;
   }
-  
-  async getMsiGames() {
-    return this.matchRepository.getMsiMatches();
+
+  getMsiGames() {
+    return this.matchRepository.getMsiGames();
+  }
+
+  getGameById(id) {
+    return this.matchRepository.getGameById(id);
+  }
+
+  getShortGameById(id) {
+    return this.matchRepository.getShortGameById(id);
   }
 }

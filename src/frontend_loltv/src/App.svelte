@@ -1,7 +1,7 @@
 <script>
-  import { getMsiGames } from "./services/matchService";
-
-  let promiseGames = getMsiGames();
+  import MatchResultCard from './components/matchResultCard.svelte';
+  import { getShortGameById } from './services/matchService'
+  let promise = getShortGameById('240-267');
   export let name;
 </script>
 
@@ -11,13 +11,8 @@
     Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn
     how to build Svelte apps.
   </p>
-
-  {#await promiseGames}
-    <p>...waiting</p>
-  {:then games}
-    <p>{JSON.stringify(games.matches[0])}</p>
-  {:catch error}
-    <p style="color: red">{error.message}</p>
+  {#await promise then game}
+    <MatchResultCard {...game}/>
   {/await}
 </main>
 
