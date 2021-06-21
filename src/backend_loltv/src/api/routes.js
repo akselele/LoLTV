@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import matchRouter from './match/matchRouter';
 
 const router = Router();
 

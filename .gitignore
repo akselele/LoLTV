@@ -1,6 +1,6 @@
 .env
-.env
 .vscode
 node_modules/
 src/gamedata/*.csv
 incompleteMatchIds.json
+dist/

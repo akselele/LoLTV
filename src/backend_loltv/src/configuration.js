@@ -3,7 +3,9 @@ import {
   InjectionMode,
   Lifetime,
   asClass,
+  asValue,
 } from 'awilix';
+import db from './db';
 
 export default function configureDIContainer() {
   return createContainer()
@@ -23,5 +25,8 @@ export default function configureDIContainer() {
           injectionMode: InjectionMode.PROXY,
         },
       },
-    );
+    )
+    .register({
+      knex: asValue(db, { lifetime: Lifetime.SINGLETON }),
+    });
 }

@@ -1,31 +1,13 @@
 
 exports.up = (knex) => Promise.all([
+
   knex.schema.createTable('TD_Match', (t) => {
     t.string('PK_Match').primary();
-    t.date('DT_Match').notNullable();
+    t.timestamp('DTT_Match').notNullable();
     t.string('TX_League').notNullable();
     t.string('TX_Match_URL');
-    t.string('TX_Winner').notNullable();
-    t.string('FK_Team1').notNullable();
-    t.string('FK_Team2').notNullable();
-    // t.bigInteger('TX_Winner').references('PK_Team').inTable('TD_Team').notNullable();
-    // t.bigInteger('FK_Team1').references('PK_Team').inTable('TD_Team').notNullable();
-    // t.bigInteger('FK_Team2').references('PK_Team').inTable('TD_Team').notNullable();
-    t.integer('NB_Kills_Team1').notNullable();
-    t.integer('NB_Kills_Team2').notNullable();
-  }),
-
-  // knex.schema.createTable('TD_Team', (t) => {
-  //   t.bigIncrements('PK_Team').primary();
-  //   t.string('TX_League').notNullable();
-    
-  // }),
-
-  knex.schema.createTable('TD_Match_Metadata', (t) => {
-    t.string('PK_Match_MetaData').primary();
-    t.date('DT_Match').notNullable();
-    t.string('TX_League').notNullable();
-    t.string('TX_Match_URL');
+    t.boolean('BOOL_Playoffs');
+    t.integer('NB_Game');
     t.integer('NB_Year');
     t.string('TX_Split');
     t.string('TX_Patch');

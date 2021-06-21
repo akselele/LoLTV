@@ -6,7 +6,6 @@ import matchController from './matchController';
 const router = Router();
 const matchApi = makeInvoker(matchController);
 
-router.get('/upcoming', matchApi('getUpcomingMatches'));
-router.get('/games', matchApi('getGames'));
+router.get('/msi', matchApi('getMsiGames'));
 
 export default router;

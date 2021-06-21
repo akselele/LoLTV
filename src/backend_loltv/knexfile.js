@@ -4,7 +4,6 @@ const path = require('path');
 dotenv.config({ path: path.resolve(process.cwd(), '../env/.env') });
 dotenv.config({ path: path.resolve(process.cwd(), `../env/${process.env.ENV}/.env`) });
 
-console.log(process.env.ENV);
 const migrationsOptions = {
   directory: './db/migrations',
 };

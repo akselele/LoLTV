@@ -72,14 +72,16 @@ for file_name in glob.glob(dirpath):
         current_id = row[0]
         gamesExtracted += 1
       if line_count != 0:
-        match["PK_Match_MetaData"] = row[0]
+        match["PK_Match"] = row[0]
         match["TX_Match_URL"] = row[2]
         match["TX_League"] = row[3]
         match["NB_Year"] = row[4]
         match["TX_Split"] = row[5]
-        match["DT_Match"] = row[7]
+        match["DTT_Match"] = row[7]
         match["TX_Patch"] = row[9]
         match["NB_Gamelength"] = row[21]
+        match["BOOL_Playoffs"] = bool(int(row[6]))
+        match["NB_Game"] = row[8]
       if line_count < 6: 
         if row[12] == "top":
           match["TX_Top_Team1"] = row[13]
@@ -219,19 +221,23 @@ connection = psycopg2.connect(
 cursor = connection.cursor()
 
 #TODO: Correct the missing data (like bo5 blind picks in LCK/LPL where a role is missing)
+# This is for TD_Match table
 missedMatches = []
 for match in matches:
   try:
     keys = match.keys()
     columns = ','.join(f'"{k}"'for k in keys)
     values = ','.join(['%({})s'.format(k) for k in keys])
-    insert = 'insert into \"TD_Match_Metadata\" ({0}) values ({1})'.format(columns, values)
+    insert = 'insert into \"TD_Match\" ({0} ) values ({1})'.format(columns, values)
     query = cursor.mogrify(insert, match)
     cursor.execute(query)
     connection.commit()
   except:
     connection.rollback()
-    missedMatches.append(match["PK_Match_MetaData"])
+    missedMatches.append(match["PK_Match"])
+
+with open('missedMatches.json', 'w') as outfile:
+  json.dump(missedMatches, outfile)
 
 print('Finished inserting amtches into database.')
 
