@@ -16,8 +16,9 @@
 </script>
 
 <main>
-  <div class="results">
+  <div class="results" id={id}>
     <div class="eventName"><a href={matchUrl}>{league} {year}</a></div>
+    <div>{date}</div>
     <div class="teambox">
       <div class="teamrows">
         <div class="teamrow">{winner}</div>
@@ -54,9 +55,9 @@
     text-align: right;
   }
 
-  .eventName {
+  /* .eventName {
     
-  }
+  } */
 
   .winnerScore {
     color: green;
